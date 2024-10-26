@@ -2,39 +2,40 @@ import React from 'react';
 import StatCard from './StatCard';
 import axios from 'axios';
 import { api_url } from '../../config.js/config';
+import { useParams } from 'react-router-dom';
 
-const Overall = () => {
+const Seasonal = () => {
     const [players, setPlayers] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
 
+    const { seasonYear } = useParams();
+
     React.useEffect(() => {
         fetchData();
-    }, []);
+    }, [seasonYear]);
 
     const fetchData = async () => {
         setLoading(true);
-        try {
-            const response = await axios.get(api_url + '/stats/overall');
-            setPlayers(response.data);
-        } catch (error) {
-            console.error("Error fetching player stats:", error);
-        }
+        const response = await axios.get(api_url + '/stats/' + seasonYear);
+        setPlayers(response.data);
         setLoading(false);
-    };
+    }
 
     if (loading) {
-        return <div className="loading">Loading...</div>;
+        return (
+            <div>loading</div>
+        );
     }
 
     return (
         <div className="overall-container">
             <div className="stat-cards-grid">
                 {players.map(player => (
-                    <StatCard key={player._id} player={player} seasonal={false} />
+                    <StatCard key={player._id} player={player} seasonal={true} />
                 ))}
             </div>
         </div>
     );
 };
 
-export default Overall;
+export default Seasonal;

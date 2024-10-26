@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../styles/statcard.css';
 
-const StatCard = ({ player }) => {
+const StatCard = ({ player, seasonal }) => {
     const kd = (player.kills / player.deaths).toFixed(2);
     const avgKills = (player.kills / player.matches).toFixed(2);
     const winrate = ((player.wins / player.matches) * 100).toFixed(1);
@@ -10,10 +10,11 @@ const StatCard = ({ player }) => {
         <div className="stat-card">
             <h2 className="stat-card__name">{player.playerName}</h2>
             <div className="stat-card__stats">
-                <div className="stat-card__stat">
-                    <span className="stat-card__label">Headshot %</span>
-                    <span className="stat-card__value">{player.hsRate}%</span>
-                </div>
+                {!seasonal && (
+                    <div className="stat-card__stat">
+                        <span className="stat-card__label">Headshot %</span>
+                        <span className="stat-card__value">{player.hsRate}%</span>
+                    </div>)}
                 <div className="stat-card__stat">
                     <span className="stat-card__label">Kills</span>
                     <span className="stat-card__value">{player.kills}</span>
@@ -34,6 +35,18 @@ const StatCard = ({ player }) => {
                     <span className="stat-card__label">Matches</span>
                     <span className="stat-card__value">{player.matches}</span>
                 </div>
+                {seasonal && (
+                    <>
+                        <div className="stat-card__stat">
+                            <span className="stat-card__label">Current Rank</span>
+                            <span className="stat-card__value">{player.currentRank}</span>
+                        </div>
+                        <div className="stat-card__stat">
+                            <span className="stat-card__label">Max Rank</span>
+                            <span className="stat-card__value">{player.maxRank}</span>
+                        </div>
+                    </>
+                )}
             </div>
         </div>
     );
