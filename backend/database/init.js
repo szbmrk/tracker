@@ -6,9 +6,9 @@ export const insertSeasonsIfNotExists = async () => {
     try {
         await Promise.all(seasonsData.map(async (season) => {
             await Season.updateOne(
-                { seasonName: season.seasonName },
-                { $setOnInsert: season },
-                { upsert: true }
+                { seasonName: season.seasonName, seasonYear: season.seasonYear },
+                { $setOnInsert: { seasonName: season.seasonName, seasonYear: season.seasonYear } },
+                { upsert: true, new: true }
             );
         }));
         console.log('Seasons added if they did not already exist.');

@@ -5,7 +5,6 @@ import { playersData } from '../resources/players.js'
 import { Season } from '../database/models.js'
 
 export const updateOverallStatsForAllPlayers = async () => {
-
     await Promise.all(playersData.map(async (player) => {
         await updateOverallStats(player.playerName)
         logger(`Overall stats updated for ${player.playerName}`)

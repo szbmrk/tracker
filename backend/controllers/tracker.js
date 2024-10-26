@@ -1,11 +1,4 @@
-import e from 'express'
 import { Season } from '../database/models.js'
-import { logger } from '../utils/logger.js'
-import { getSeasonalStastsFroPlayer } from './seasonalStats.js'
-
-export const updateSeasonalStatsForAllPlayers = async (req, res) => {
-    res.send("test")
-}
 
 export const getOverallStats = async (req, res) => {
     try {
@@ -19,8 +12,8 @@ export const getOverallStats = async (req, res) => {
 
 export const getSeasonStats = async (req, res) => {
     try {
-        const seasonName = req.params.seasonName
-        const season = await Season.findOne({ seasonName: seasonName })
+        const seasonYear = req.params.seasonYear
+        const season = await Season.findOne({ seasonYear: seasonYear })
         res.status(200).json(season.playerStats)
     }
     catch (error) {

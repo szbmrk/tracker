@@ -1,6 +1,33 @@
 import axios from 'axios'
 import * as cheerio from 'cheerio'
+import { playersData } from '../resources/players.js'
+import { Season } from '../database/models.js'
+import { logger } from '../utils/logger.js'
 import { seasonsData } from '../resources/seasons.js'
+
+export const updateSeasonalStatsForAllPlayers = async () => {
+    await Promise.all(playersData.map(async (player) => {
+        await updateSeasonalStats(player.playerName)
+        logger(`Seasonal stats updated for ${player.playerName}`)
+    }))
+}
+
+const updateSeasonalStats = async (player) => {
+    const result = await getSeasonalStastsFroPlayer(player)
+
+    await Promise.all(result.map(async (r) => {
+        const season = await Season.findOne({ seasonName: r.seasonName })
+        const playerStats = season.playerStats
+        const playerIndex = playerStats.findIndex(stat => stat.playerName === player)
+
+        let stats = { ...r }
+        delete stats.seasonName
+
+        playerStats[playerIndex] = { playerName: player, ...stats }
+        season.playerStats = playerStats
+        await season.save()
+    }))
+}
 
 export const getSeasonalStastsFroPlayer = async (player) => {
     const url = `https://r6.tracker.network/r6siege/profile/ubi/${player}/seasons?playlist=pvp_ranked&page=1`
