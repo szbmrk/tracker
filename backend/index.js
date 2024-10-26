@@ -24,6 +24,6 @@ await insertPlayerStatsIfNotExists()
 app.use('/api', router)
 app.listen(PORT, () => console.log("Server started on port: " + PORT))
 
-cron.schedule('*/10 * * * *', async () => {
+cron.schedule('*/20 * * * *', async () => {
     await syncPlayers();
 });

@@ -1,8 +1,9 @@
 import express from "express";
-import { getOverallStats, getSeasonStats } from "../controllers/tracker.js";
+import { getOverallStats, getSeasons, getSeasonStats } from "../controllers/tracker.js";
 
 const router = express.Router()
 
+router.get("/seasons", getSeasons)
 router.get("/stats/overall", getOverallStats)
 router.get("/stats/:seasonYear", getSeasonStats)
 

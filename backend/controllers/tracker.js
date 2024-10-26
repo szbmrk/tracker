@@ -1,5 +1,15 @@
 import { Season } from '../database/models.js'
 
+export const getSeasons = async (req, res) => {
+    try {
+        const seasons = await Season.find({})
+        res.status(200).json(seasons)
+    }
+    catch (error) {
+        res.status(500).json({ msg: error.message })
+    }
+}
+
 export const getOverallStats = async (req, res) => {
     try {
         const overallSeason = await Season.findOne({ seasonName: 'Overall' })
