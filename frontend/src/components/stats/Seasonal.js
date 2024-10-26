@@ -23,7 +23,7 @@ const Seasonal = () => {
 
     if (loading) {
         return (
-            <div>loading</div>
+            <div className="loading">Loading...</div>
         );
     }
 
