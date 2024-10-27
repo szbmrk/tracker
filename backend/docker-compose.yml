@@ -1,0 +1,15 @@
+version: '3.3'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tracker_api
+    restart: always
+    env_file: 
+      - .env
+    ports:
+      - "${PORT}:${PORT}"
+    depends_on:
+        - db
