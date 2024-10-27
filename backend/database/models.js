@@ -33,6 +33,10 @@ const PlayerStatsSchema = new mongoose.Schema({
         type: String,
         default: "NO RANK",
     },
+    playTime: {
+        type: Number,
+        default: 0,
+    }
 }, {
     versionKey: false
 });

@@ -4,7 +4,7 @@ import axios from 'axios';
 import { api_url } from '../../config.js/config';
 import { useParams } from 'react-router-dom';
 
-const Seasonal = () => {
+const StatsPage = ({ seasonal }) => {
     const [players, setPlayers] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
 
@@ -16,9 +16,17 @@ const Seasonal = () => {
 
     const fetchData = async () => {
         setLoading(true);
-        const response = await axios.get(api_url + '/stats/' + seasonYear);
-        setPlayers(response.data);
-        setLoading(false);
+        if (!seasonal) {
+            const response = await axios.get(api_url + '/stats/overall');
+            setPlayers(response.data.sort((a, b) => b.matches - a.matches));
+            setLoading(false);
+        }
+        else {
+            const response = await axios.get(api_url + '/stats/' + seasonYear);
+            setPlayers(response.data.sort((a, b) => b.matches - a.matches));
+            setLoading(false);
+        }
+
     }
 
     if (loading) {
@@ -31,11 +39,11 @@ const Seasonal = () => {
         <div className="overall-container">
             <div className="stat-cards-grid">
                 {players.map(player => (
-                    <StatCard key={player._id} player={player} seasonal={true} />
+                    <StatCard key={player._id} player={player} seasonal={seasonal} />
                 ))}
             </div>
         </div>
     );
 };
 
-export default Seasonal;
+export default StatsPage;

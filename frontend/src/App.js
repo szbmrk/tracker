@@ -1,9 +1,8 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import "./styles/styles.css";
-import "./styles/main.css";
+import "./styles/statspage.css";
 import Navbar from "./components/Navbar";
-import Overall from "./components/stats/Overall";
-import Seasonal from "./components/stats/Seasonal";
+import StatsPage from "./components/stats/StatsPage";
 
 function App() {
     return (
@@ -13,8 +12,8 @@ function App() {
             </Routes>
             <Routes>
                 <Route path="/" element={<Navigate to={"/overall"} />} />
-                <Route path="overall" element={<Overall />} />
-                <Route path="season/:seasonYear" element={<Seasonal />} />
+                <Route path="overall" element={<StatsPage seasonal={false} />} />
+                <Route path="season/:seasonYear" element={<StatsPage seasonal={true} />} />
             </Routes>
         </BrowserRouter>
     );

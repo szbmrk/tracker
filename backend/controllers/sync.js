@@ -28,6 +28,7 @@ export const syncPlayers = async () => {
     try {
         logger('Syncing players')
         await updateOverallStats()
+        await new Promise(resolve => setTimeout(resolve, 180000))
         await updateSeasonalStats()
         logger('Players synced')
     }

@@ -49,9 +49,19 @@ const getOverallStatsForPlayer = async (player) => {
         }
     });
 
-    const cleanedStats = cleanAndParseOverallStats(overallStats);
+    let playtime = 0;
+    $('.overview .text-primary').each(function (index, element) {
+        const text = $(this).text().trim();
+        if (text.includes('h')) {
+            playtime += parseFloat(text.replace('h', ''));
+        }
+    });
+
+    let cleanedStats = cleanAndParseOverallStats(overallStats);
+    cleanedStats = [...cleanedStats, { label: 'playTime', value: playtime }];
 
     const result = processOverallStats(cleanedStats);
+    console.log(result);
 
     return result;
 }
@@ -75,10 +85,13 @@ const processOverallStats = (stats) => {
             acc.hsRate = value;
         } else if (label.includes('matches')) {
             acc.matches = value;
-        } else if (label.includes('kills')) {
+        } else if (label == 'kills') {
             acc.kills = value;
         } else if (label.includes('deaths')) {
             acc.deaths = value;
+        }
+        else if (label.includes('playTime')) {
+            acc.playTime = value;
         }
         acc.maxRank = 0;
         acc.currentRank = 0;
