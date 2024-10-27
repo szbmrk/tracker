@@ -15,7 +15,6 @@ const StatCard = ({ player, seasonal }) => {
         let rankNumber = rank.split(' ')[1];
         rankNumber = rankNumber === 'V' ? 5 : rankNumber === 'IV' ? 4 : rankNumber === 'III' ? 3 : rankNumber === 'II' ? 2 : 1;
 
-        console.log(`/images/ranks/${rankTitle}-${rankNumber}.png`)
         return `/images/ranks/${rankTitle}-${rankNumber}.png`;
     };
 

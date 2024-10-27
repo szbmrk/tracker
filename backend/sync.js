@@ -31,7 +31,7 @@ export const syncPlayers = async () => {
     try {
         logger('Syncing players')
         await updateOverallStats()
-        await new Promise(resolve => setTimeout(resolve, 180000))
+        await new Promise(resolve => setTimeout(resolve, 100000))
         await updateSeasonalStats()
         logger('Players synced')
     }
@@ -44,6 +44,6 @@ await connectToDatabase()
 await insertSeasonsIfNotExists()
 await insertPlayerStatsIfNotExists()
 await syncPlayers();
-cron.schedule('*/20 * * * *', async () => {
+cron.schedule('*/10 * * * *', async () => {
     await syncPlayers();
 });
