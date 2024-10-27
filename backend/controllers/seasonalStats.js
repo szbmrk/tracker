@@ -127,7 +127,9 @@ function parseStatsData(rows) {
         let statsArray = [];
         let i = currentIndex + 1;
         while (i < parts.length) {
-            const num = parseFloat(parts[i].replace('%', ''));
+            let cleanedPart = parts[i].replace(',', '');
+            cleanedPart = cleanedPart.replace('%', '');
+            const num = parseFloat(cleanedPart);
             if (!isNaN(num)) {
                 statsArray.push(num);
             }

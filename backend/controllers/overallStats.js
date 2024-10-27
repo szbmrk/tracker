@@ -53,7 +53,9 @@ const getOverallStatsForPlayer = async (player) => {
     $('.overview .text-primary').each(function (index, element) {
         const text = $(this).text().trim();
         if (text.includes('h')) {
-            playtime += parseFloat(text.replace('h', ''));
+            let cleanedText = text.replace('h', '');
+            cleanedText = cleanedText.replace(',', '');
+            playtime += parseFloat(cleanedText);
         }
     });
 
@@ -61,7 +63,6 @@ const getOverallStatsForPlayer = async (player) => {
     cleanedStats = [...cleanedStats, { label: 'playTime', value: playtime }];
 
     const result = processOverallStats(cleanedStats);
-    console.log(result);
 
     return result;
 }

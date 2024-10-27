@@ -4,16 +4,19 @@ import '../../styles/statcard.css';
 const StatCard = ({ player, seasonal }) => {
     const getRankImage = (rank) => {
         if (rank === "NO RANK") {
-            return `/images/ranks/Unranked/unranked.png`;
+            return `/images/ranks/unranked.png`;
+        }
+
+        if (rank === "CHAMPIONS") {
+            return `/images/ranks/champions.png`;
         }
 
         let rankTitle = rank.split(' ')[0].toLowerCase();
-        rankTitle = rankTitle.charAt(0).toUpperCase() + rankTitle.slice(1);
-
         let rankNumber = rank.split(' ')[1];
         rankNumber = rankNumber === 'V' ? 5 : rankNumber === 'IV' ? 4 : rankNumber === 'III' ? 3 : rankNumber === 'II' ? 2 : 1;
 
-        return `/images/ranks/${rankTitle}/${rankTitle}${rankNumber}.png`;
+        console.log(`/images/ranks/${rankTitle}-${rankNumber}.png`)
+        return `/images/ranks/${rankTitle}-${rankNumber}.png`;
     };
 
     const kd = (player.kills / player.deaths).toFixed(2);
@@ -36,7 +39,7 @@ const StatCard = ({ player, seasonal }) => {
                 <div className="stat-card__stats">
                     <div className="stat-card__stat">
                         <span className="stat-card__label">Kills</span>
-                        <span className="stat-card__value">{player.kills}</span>
+                        <span className="stat-card__value">{player.kills.toLocaleString('en-US')}</span> {/* Format Kills */}
                     </div>
                     <div className="stat-card__stat">
                         <span className="stat-card__label">K/D Ratio</span>
@@ -54,7 +57,7 @@ const StatCard = ({ player, seasonal }) => {
                     </div>
                     <div className="stat-card__stat">
                         <span className="stat-card__label">Matches</span>
-                        <span className="stat-card__value">{player.matches}</span>
+                        <span className="stat-card__value">{player.matches.toLocaleString('en-US')}</span> {/* Format Matches */}
                     </div>
                     {!seasonal && (
                         <div className="stat-card__stat">
@@ -87,7 +90,7 @@ const StatCard = ({ player, seasonal }) => {
                     {!seasonal && (
                         <div className="stat-card__stat">
                             <span className="stat-card__label">Playtime</span>
-                            <span className="stat-card__value">1000 h</span>
+                            <span className="stat-card__value">{player.playTime} h</span>
                         </div>
                     )}
                 </div>

@@ -17,11 +17,13 @@ const StatsPage = ({ seasonal }) => {
     const fetchData = async () => {
         setLoading(true);
         if (!seasonal) {
+            document.title = 'Tracker | R6 - Overall Stats';
             const response = await axios.get(api_url + '/stats/overall');
             setPlayers(response.data.sort((a, b) => b.matches - a.matches));
             setLoading(false);
         }
         else {
+            document.title = 'Tracker | R6 - Season ' + seasonYear + ' Stats';
             const response = await axios.get(api_url + '/stats/' + seasonYear);
             setPlayers(response.data.sort((a, b) => b.matches - a.matches));
             setLoading(false);
