@@ -4,8 +4,8 @@
     --bg-tertiary: #1a1a1f;
     --text-primary: #ffffff;
     --text-secondary: #a0a0a0;
-    --accent: #72d5ff;
-    --accent-dark: #00a7e1;
+    --accent: #cdcbcb;
+    --accent-dark: #a0a0a0;
     --border: #1f1f23;
     --shadow-light: rgba(0, 0, 0, 0.1);
     --shadow-heavy: rgba(0, 0, 0, 0.3);
@@ -19,6 +19,11 @@
 [data-theme='Szoboh'] {
     --accent: #8b5cf6;
     --accent-dark: #6d28d9;
+}
+
+[data-theme='JankoPepe'] {
+    --accent: #72d5ff;
+    --accent-dark: #00a7e1;
 }
 
 body {
