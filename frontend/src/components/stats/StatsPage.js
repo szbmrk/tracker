@@ -4,11 +4,13 @@ import axios from 'axios';
 import { api_url } from '../../config/config.js';
 import { useParams } from 'react-router-dom';
 import '../../styles/spinner.css';
+import MapsTable from './MapsTable.js';
 
 const StatsPage = ({ seasonal }) => {
     const [players, setPlayers] = React.useState([]);
+    const [maps, setMaps] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
-    const [view, setView] = React.useState('players'); // New state for view toggle
+    const [view, setView] = React.useState('players');
 
     const { seasonYear } = useParams();
 
@@ -20,15 +22,23 @@ const StatsPage = ({ seasonal }) => {
 
     const fetchData = async () => {
         setLoading(true);
+        setView('players');
         if (!seasonal) {
             document.title = 'Tracker | R6 - Overall Stats';
             const response = await axios.get(api_url + '/stats/overall');
-            setPlayers(response.data.sort((a, b) => b.matches - a.matches));
+            setPlayers(response.data.playerStats.sort((a, b) => b.matches - a.matches));
             setLoading(false);
         } else {
             document.title = 'Tracker | R6 - Season ' + seasonYear + ' Stats';
             const response = await axios.get(api_url + '/stats/' + seasonYear);
-            setPlayers(response.data.sort((a, b) => b.matches - a.matches));
+            setPlayers(response.data.playerStats.sort((a, b) => b.matches - a.matches));
+            setMaps(response.data.mapStats);
+            if (response.data.mapStats.length > 0) {
+                setHasMaps(true);
+            }
+            else {
+                setHasMaps(false);
+            }
             setLoading(false);
         }
     };
@@ -62,7 +72,7 @@ const StatsPage = ({ seasonal }) => {
                 </div>
             ) : (
                 <div className="maps-placeholder">
-                    <h2>Map Statistics Coming Soon</h2>
+                    <MapsTable maps={maps} seasonYear={seasonYear} />
                 </div>
             )}
         </div>

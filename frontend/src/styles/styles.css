@@ -46,3 +46,21 @@ body {
     color: var(--text-primary);
     font-family: 'Poppins', sans-serif;
 }
+
+body::-webkit-scrollbar {
+    width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+    border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: darken(var(--accent), 10%);
+}

@@ -4,7 +4,7 @@ import router from "./routes/routes.js"
 import cors from "cors"
 import dotenv from "dotenv"
 import { connectToDatabase } from "./database/db.js"
-import { insertPlayerStatsIfNotExists, insertSeasonsIfNotExists } from "./database/init.js"
+import { insertMapsIfNotExists, insertPlayerStatsIfNotExists, insertSeasonsIfNotExists } from "./database/init.js"
 
 dotenv.config()
 
@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 await connectToDatabase()
 await insertSeasonsIfNotExists()
 await insertPlayerStatsIfNotExists()
+await insertMapsIfNotExists()
 
 app.use('/api', router)
 app.listen(PORT, () => console.log("Server started on port: " + PORT))

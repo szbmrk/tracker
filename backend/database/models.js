@@ -41,6 +41,24 @@ const PlayerStatsSchema = new mongoose.Schema({
     versionKey: false
 });
 
+const MapStatsSchema = new mongoose.Schema({
+    mapName: {
+        type: String,
+        required: true,
+    },
+    wins: {
+        type: Number,
+        default: 0,
+    },
+    losses: {
+        type: Number,
+        default: 0,
+    },
+}, {
+    versionKey: false
+});
+
+
 const SeasonSchema = new mongoose.Schema({
     seasonYear: {
         type: String,
@@ -51,6 +69,7 @@ const SeasonSchema = new mongoose.Schema({
         required: true,
     },
     playerStats: [PlayerStatsSchema],
+    mapStats: [MapStatsSchema],
 }, {
     versionKey: false
 });

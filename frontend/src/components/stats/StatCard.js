@@ -19,7 +19,6 @@ const StatCard = ({ player, seasonal }) => {
     };
 
     const kd = (player.kills / player.deaths).toFixed(2);
-    const avgKills = (player.kills / player.matches).toFixed(2);
     const winrate = ((player.wins / player.matches) * 100).toFixed(1);
 
     const profileImage = `/images/players/${player.playerName}.png`;

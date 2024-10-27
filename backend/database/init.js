@@ -1,6 +1,7 @@
 import { Season } from './models.js';
 import { seasonsData } from '../resources/seasons.js';
 import { playersData } from '../resources/players.js';
+import { mapsData } from '../resources/maps.js';
 
 export const insertSeasonsIfNotExists = async () => {
     try {
@@ -53,3 +54,32 @@ export const insertPlayerStatsIfNotExists = async () => {
         console.error('Error inserting player stats:', error);
     }
 };
+
+export const insertMapsIfNotExists = async () => {
+    try {
+        const seasonDoc = await Season.findOneAndUpdate(
+            { seasonName: seasonsData[1].seasonName, seasonYear: seasonsData[1].seasonYear },
+            { $setOnInsert: { seasonName: seasonsData[1].seasonName, seasonYear: seasonsData[1].seasonYear, mapStats: [] } },
+            { upsert: true, new: true }
+        );
+
+        await Promise.all(mapsData.map(async (map) => {
+            const exists = seasonDoc.mapStats.some(
+                (stat) => stat.mapName === map.mapName
+            );
+
+            if (!exists) {
+                seasonDoc.mapStats.push({
+                    mapName: map.mapName,
+                    wins: 0,
+                    losses: 0,
+                });
+            }
+        }));
+
+        await seasonDoc.save();
+        console.log('Maps added if they did not already exist.');
+    } catch (error) {
+        console.error('Error inserting maps:', error);
+    }
+}
