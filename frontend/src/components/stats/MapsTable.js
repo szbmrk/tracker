@@ -7,6 +7,10 @@ const MapsTable = ({ maps, seasonYear }) => {
     const currentSeasonYear = 'Y9S3';
     const [mapStats, setMapStats] = useState(maps);
 
+    const getImageUrl = (mapName) => {
+        return `/images/maps/${mapName}.png`;
+    };
+
     const updateWins = async (index, delta) => {
         if (delta === 1) {
             try {
@@ -94,7 +98,7 @@ const MapsTable = ({ maps, seasonYear }) => {
     return (
         <div className="maps-table-container">
             <h2 className="maps-table-title">Map Stats</h2>
-            <div className="maps-table-wrapper"> {/* Wrap the table here */}
+            <div className="maps-table-wrapper">
                 <table className="maps-table">
                     <thead>
                         <tr>
@@ -110,7 +114,7 @@ const MapsTable = ({ maps, seasonYear }) => {
                         {mapStats.map((map, index) => (
                             <tr key={index} className="map-row">
                                 <td>
-                                    <img src={'/images/players/Szoboh.png'} alt={map.mapName} className="map-image" />
+                                    <img src={getImageUrl(map.mapName)} alt={map.mapName} className="map-image" />
                                 </td>
                                 <td>{map.mapName}</td>
                                 <td>{map.wins + map.losses}</td>

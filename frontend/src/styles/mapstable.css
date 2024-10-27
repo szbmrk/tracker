@@ -40,7 +40,7 @@
     width: 100%;
     border-collapse: collapse;
     font-family: 'Poppins', sans-serif;
-    min-width: 800px;
+    min-width: 1000px;
 }
 
 .maps-table th,
@@ -73,14 +73,13 @@
 }
 
 .map-image {
-    width: 70px;
-    height: 40px;
+    width: 140px;
+    height: 70px;
     object-fit: cover;
     border-radius: 5px;
     border: 2px solid var(--accent);
 }
 
-/* Modified progress bar related styles */
 .progress-bar-wrapper {
     display: flex;
     flex-direction: column;
