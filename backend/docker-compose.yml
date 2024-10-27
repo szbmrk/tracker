@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: tracker_api
+    image: tracker_api
     restart: always
     env_file: 
       - .env
