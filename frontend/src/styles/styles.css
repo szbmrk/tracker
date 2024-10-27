@@ -31,6 +31,16 @@
     --accent-dark: #2E8A06;
 }
 
+[data-theme='Kiliman-Jaro'] {
+    --accent: #9c1111;
+    --accent-dark: #7f0d0d;
+}
+
+[data-theme='wolfino0'] {
+    --accent: #c7560a;
+    --accent-dark: #a84600;
+}
+
 body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
