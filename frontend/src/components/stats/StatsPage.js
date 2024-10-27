@@ -1,7 +1,7 @@
 import React from 'react';
 import StatCard from './StatCard';
 import axios from 'axios';
-import { api_url } from '../../config.js/config';
+import { api_url } from '../../config/config.js';
 import { useParams } from 'react-router-dom';
 import '../../styles/spinner.css';
 
