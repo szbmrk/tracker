@@ -28,7 +28,7 @@ const StatCard = ({ player, seasonal }) => {
     const maxRankImage = seasonal ? getRankImage(player.maxRank) : null;
 
     return (
-        <div className="stat-card">
+        <div className="stat-card" data-theme={player.playerName}>
             <div className="stat-card__header">
                 <img src={profileImage} alt={`${player.playerName} profile`} className="stat-card__profile-pic" />
                 <h2 className="stat-card__name">{player.playerName}</h2>

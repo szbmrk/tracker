@@ -3,6 +3,7 @@ import StatCard from './StatCard';
 import axios from 'axios';
 import { api_url } from '../../config.js/config';
 import { useParams } from 'react-router-dom';
+import '../../styles/spinner.css';
 
 const StatsPage = ({ seasonal }) => {
     const [players, setPlayers] = React.useState([]);
@@ -33,9 +34,12 @@ const StatsPage = ({ seasonal }) => {
 
     if (loading) {
         return (
-            <div className="loading">Loading...</div>
+            <div className="loading">
+                <div className="spinner"></div>
+            </div>
         );
     }
+
 
     return (
         <div className="overall-container">
