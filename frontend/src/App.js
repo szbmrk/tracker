@@ -6,7 +6,7 @@ import StatsPage from "./components/stats/StatsPage";
 
 function App() {
     return (
-        <BrowserRouter basename="/r6">
+        <BrowserRouter>
             <Routes>
                 <Route path="*" element={<Navbar />} />
             </Routes>
