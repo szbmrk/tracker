@@ -6,6 +6,58 @@
     color: var(--text-primary);
 }
 
+.view-toggle {
+    position: relative;
+    width: 120px;
+    height: 32px;
+    background-color: var(--bg-tertiary);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px var(--shadow-light);
+    margin-bottom: 1.5rem;
+    margin-top: -1.5rem;
+}
+
+.toggle-option {
+    flex: 1;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    z-index: 1;
+    user-select: none;
+    transition: color 0.3s;
+}
+
+.toggle-option.active {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 50%;
+    height: calc(100% - 4px);
+    background-color: var(--accent);
+    border-radius: 14px;
+    transition: left 0.3s ease;
+    box-shadow: 0 2px 4px var(--shadow-heavy);
+}
+
+.view-toggle.players-active .knob {
+    left: 2px;
+}
+
+.view-toggle.maps-active .knob {
+    left: calc(100% - 2px - 50%);
+}
+
 .loading {
     font-size: 1.2rem;
     color: var(--accent);
@@ -22,6 +74,17 @@
     margin-top: -2rem;
     padding: 1rem;
 }
+
+.maps-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--accent);
+    height: 200px;
+}
+
+/* Responsive adjustments */
 
 @media (max-width: 768px) {
     .overall-container {
