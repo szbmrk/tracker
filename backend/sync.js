@@ -1,6 +1,9 @@
-import { logger } from "../utils/logger.js"
-import { updateOverallStatsForAllPlayers } from "./overallStats.js"
-import { updateSeasonalStatsForAllPlayers } from "./seasonalStats.js"
+import { logger } from "./utils/logger.js"
+import { updateOverallStatsForAllPlayers } from "./controllers/overallStats.js"
+import { updateSeasonalStatsForAllPlayers } from "./controllers/seasonalStats.js"
+import cron from "node-cron"
+import { connectToDatabase } from "./database/db.js"
+import { insertSeasonsIfNotExists, insertPlayerStatsIfNotExists } from "./database/init.js"
 
 const updateOverallStats = async () => {
     try {
@@ -36,3 +39,11 @@ export const syncPlayers = async () => {
         logger('Error syncing players: ', error)
     }
 }
+
+await connectToDatabase()
+await insertSeasonsIfNotExists()
+await insertPlayerStatsIfNotExists()
+await syncPlayers();
+cron.schedule('*/20 * * * *', async () => {
+    await syncPlayers();
+});

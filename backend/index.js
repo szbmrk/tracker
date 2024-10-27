@@ -5,8 +5,6 @@ import cors from "cors"
 import dotenv from "dotenv"
 import { connectToDatabase } from "./database/db.js"
 import { insertPlayerStatsIfNotExists, insertSeasonsIfNotExists } from "./database/init.js"
-import cron from "node-cron"
-import { syncPlayers } from "./controllers/sync.js"
 
 dotenv.config()
 
@@ -23,8 +21,3 @@ await insertPlayerStatsIfNotExists()
 
 app.use('/api', router)
 app.listen(PORT, () => console.log("Server started on port: " + PORT))
-
-await syncPlayers();
-cron.schedule('*/20 * * * *', async () => {
-    await syncPlayers();
-});
