@@ -26,6 +26,11 @@
     --accent-dark: #00a7e1;
 }
 
+[data-theme='Juan__Escobar'] {
+    --accent: #47E10C;
+    --accent-dark: #2E8A06;
+}
+
 body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
