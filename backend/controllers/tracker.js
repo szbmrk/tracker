@@ -13,7 +13,7 @@ export const getSeasons = async (req, res) => {
 export const getOverallStats = async (req, res) => {
     try {
         const overallSeason = await Season.findOne({ seasonName: 'Overall' })
-        res.status(200).json({ playerStats: overallSeason.playerStats })
+        res.status(200).json({ playerStats: overallSeason.playerStats, mapStats: overallSeason.mapStats })
     }
     catch (error) {
         res.status(500).json({ msg: error.message })
