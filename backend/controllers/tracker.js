@@ -38,6 +38,7 @@ export const addWinToMap = async (req, res) => {
         const map = season.mapStats.find((map) => map.mapName === mapName)
         map.wins += 1
         await season.save()
+        await addWinToOverallSeasonMap(mapName)
         res.status(200).json({ msg: 'Win added to map' })
     }
     catch (error) {
@@ -52,6 +53,7 @@ export const addLossToMap = async (req, res) => {
         const map = season.mapStats.find((map) => map.mapName === mapName)
         map.losses += 1
         await season.save()
+        await addLossToOverallSeasonMap(mapName)
         res.status(200).json({ msg: 'Loss added to map' })
     }
     catch (error) {
@@ -66,6 +68,7 @@ export const deleteWinFromMap = async (req, res) => {
         const map = season.mapStats.find((map) => map.mapName === mapName)
         map.wins -= 1
         await season.save()
+        await deleteWinFromOverallSeasonMap(mapName)
         res.status(200).json({ msg: 'Win deleted from map' })
     }
     catch (error) {
@@ -80,9 +83,39 @@ export const deleteLossFromMap = async (req, res) => {
         const map = season.mapStats.find((map) => map.mapName === mapName)
         map.losses -= 1
         await season.save()
+        await deleteLossFromOverallSeasonMap(mapName)
         res.status(200).json({ msg: 'Loss deleted from map' })
     }
     catch (error) {
         res.status(500).json({ msg: error.message })
     }
+}
+
+
+const addWinToOverallSeasonMap = async (mapName) => {
+    const overallSeason = await Season.findOne({ seasonName: 'Overall' })
+    const map = overallSeason.mapStats.find((map) => map.mapName === mapName)
+    map.wins += 1
+    await overallSeason.save()
+}
+
+const addLossToOverallSeasonMap = async (mapName) => {
+    const overallSeason = await Season.findOne({ seasonName: 'Overall' })
+    const map = overallSeason.mapStats.find((map) => map.mapName === mapName)
+    map.losses += 1
+    await overallSeason.save()
+}
+
+const deleteWinFromOverallSeasonMap = async (mapName) => {
+    const overallSeason = await Season.findOne({ seasonName: 'Overall' })
+    const map = overallSeason.mapStats.find((map) => map.mapName === mapName)
+    map.wins -= 1
+    await overallSeason.save()
+}
+
+const deleteLossFromOverallSeasonMap = async (mapName) => {
+    const overallSeason = await Season.findOne({ seasonName: 'Overall' })
+    const map = overallSeason.mapStats.find((map) => map.mapName === mapName)
+    map.losses -= 1
+    await overallSeason.save()
 }

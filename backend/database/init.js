@@ -78,6 +78,29 @@ export const insertMapsIfNotExists = async () => {
         }));
 
         await seasonDoc.save();
+
+        const overallSeasonDoc = await Season.findOneAndUpdate(
+            { seasonName: "Overall", seasonYear: "Y0S0" },
+            { $setOnInsert: { seasonName: "Overall", seasonYear: "Y0S0", mapStats: [] } },
+            { upsert: true, new: true }
+        );
+
+        await Promise.all(mapsData.map(async (map) => {
+            const exists = overallSeasonDoc.mapStats.some(
+                (stat) => stat.mapName === map.mapName
+            );
+
+            if (!exists) {
+                overallSeasonDoc.mapStats.push({
+                    mapName: map.mapName,
+                    wins: 0,
+                    losses: 0,
+                });
+            }
+        }));
+
+        await overallSeasonDoc.save();
+
         console.log('Maps added if they did not already exist.');
     } catch (error) {
         console.error('Error inserting maps:', error);
