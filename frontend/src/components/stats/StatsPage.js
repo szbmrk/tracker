@@ -27,6 +27,13 @@ const StatsPage = ({ seasonal }) => {
             document.title = 'Tracker | R6 - Overall Stats';
             const response = await axios.get(api_url + '/stats/overall');
             setPlayers(response.data.playerStats.sort((a, b) => b.matches - a.matches));
+            setMaps(response.data.mapStats);
+            if (response.data.mapStats.length > 0) {
+                setHasMaps(true);
+            }
+            else {
+                setHasMaps(false);
+            }
             setLoading(false);
         } else {
             document.title = 'Tracker | R6 - Season ' + seasonYear + ' Stats';
