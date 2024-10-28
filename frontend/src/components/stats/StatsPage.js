@@ -60,7 +60,7 @@ const StatsPage = ({ seasonal }) => {
 
     return (
         <div className="overall-container">
-            {seasonal && hasMaps && (
+            {hasMaps && (
                 <div
                     className={`view-toggle ${view === 'players' ? 'players-active' : 'maps-active'}`}
                     onClick={() => setView(view === 'players' ? 'maps' : 'players')}
