@@ -4,6 +4,7 @@ import { updateSeasonalStatsForAllPlayers } from "./controllers/seasonalStats.js
 import cron from "node-cron"
 import { connectToDatabase } from "./database/db.js"
 import { insertSeasonsIfNotExists, insertPlayerStatsIfNotExists } from "./database/init.js"
+import dotenv from "dotenv"
 
 const updateOverallStats = async () => {
     try {
@@ -40,6 +41,7 @@ export const syncPlayers = async () => {
     }
 }
 
+dotenv.config()
 await connectToDatabase()
 await insertSeasonsIfNotExists()
 await insertPlayerStatsIfNotExists()
