@@ -6,6 +6,7 @@ export default function Navbar() {
 
     return (
         <nav className="navbar">
+            <NavLink to="/vs">1v1 Cup</NavLink>
             <NavLink to="/overall">Overall</NavLink>
             <NavLink to="/season/Y9S3">Y9S3</NavLink>
             <NavLink to="/season/Y9S2">Y9S2</NavLink>
