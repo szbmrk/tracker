@@ -22,7 +22,7 @@ const StatsPage = ({ seasonal }) => {
 
     const fetchData = async () => {
         setLoading(true);
-        setView('players');
+        setView('maps');
         if (!seasonal) {
             document.title = 'Tracker | R6 - Overall Stats';
             const response = await axios.get(api_url + '/stats/overall');
@@ -50,7 +50,7 @@ const StatsPage = ({ seasonal }) => {
         }
     };
 
-    if (loading && view === 'players') {
+    if (loading && view === 'maps') {
         return (
             <div className="loading">
                 <div className="spinner"></div>
