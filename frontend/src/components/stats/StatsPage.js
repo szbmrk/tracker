@@ -10,7 +10,7 @@ const StatsPage = ({ seasonal }) => {
     const [players, setPlayers] = React.useState([]);
     const [maps, setMaps] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
-    const [view, setView] = React.useState('players');
+    const [view, setView] = React.useState('maps');
 
     const { seasonYear } = useParams();
 
@@ -22,7 +22,7 @@ const StatsPage = ({ seasonal }) => {
 
     const fetchData = async () => {
         setLoading(true);
-        setView('players');
+        setView('maps');
         if (!seasonal) {
             document.title = 'Tracker | R6 - Overall Stats';
             const response = await axios.get(api_url + '/stats/overall');
@@ -50,7 +50,7 @@ const StatsPage = ({ seasonal }) => {
         }
     };
 
-    if (loading && view === 'players') {
+    if (loading && view === 'maps') {
         return (
             <div className="loading">
                 <div className="spinner"></div>
@@ -60,7 +60,7 @@ const StatsPage = ({ seasonal }) => {
 
     return (
         <div className="overall-container">
-            {hasMaps && (
+            {/*hasMaps && (
                 <div
                     className={`view-toggle ${view === 'players' ? 'players-active' : 'maps-active'}`}
                     onClick={() => setView(view === 'players' ? 'maps' : 'players')}
@@ -69,7 +69,7 @@ const StatsPage = ({ seasonal }) => {
                     <span className={`toggle-option ${view === 'maps' ? 'active' : ''}`}>Maps</span>
                     <div className="knob"></div>
                 </div>
-            )}
+            )*/}
 
             {view === 'players' ? (
                 <div className="stat-cards-grid">

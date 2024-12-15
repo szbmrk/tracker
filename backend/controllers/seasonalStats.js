@@ -30,7 +30,7 @@ const updateSeasonalStats = async (player) => {
 }
 
 export const getSeasonalStastsFroPlayer = async (player) => {
-    const url = `https://r6.tracker.network/r6siege/profile/ubi/${player}/seasons?playlist=pvp_ranked&page=1`
+    const url = `https://r6.tracker.network/r6siege/profile/ubi/${player}/seasons?gamemode=pvp_ranked&page=1`
     const raw_data = await axios.get(url)
         .then(res => {
             return res.data

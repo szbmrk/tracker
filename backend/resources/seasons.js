@@ -1,5 +1,6 @@
 export const seasonsData = [
     { seasonName: "Overall", seasonYear: "Y0S0" },
+    { seasonName: "Collision Point", seasonYear: "Y9S4" },
     { seasonName: "Twin Shells", seasonYear: "Y9S3" },
     { seasonName: "New Blood", seasonYear: "Y9S2" },
     { seasonName: "Deadly Omen", seasonYear: "Y9S1" },
