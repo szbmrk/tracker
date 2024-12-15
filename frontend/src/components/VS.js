@@ -9,6 +9,8 @@ const VS = () => {
         },
     ];
 
+    document.title = 'Tracker | 1v1 Cup';
+
     return (
         <div className="tournament-results-container">
             <h1 className="tournament-header">Tournament Results</h1>
