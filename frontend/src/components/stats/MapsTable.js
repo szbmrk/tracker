@@ -4,7 +4,7 @@ import axios from 'axios';
 import { api_url } from '../../config/config.js';
 
 const MapsTable = ({ maps, seasonYear }) => {
-    const currentSeasonYear = 'Y9S4';
+    const currentSeasonYear = 'Y9S5';
     const [mapStats, setMapStats] = useState(maps);
 
     const getImageUrl = (mapName) => {
