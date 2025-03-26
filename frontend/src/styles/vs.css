@@ -1,55 +1,137 @@
-.tournament-bracket {
-    color: var(--text-primary);
+.tournament-results-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-primary);
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.tournament-header {
+    font-size: 2rem;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.tournament-card {
     background-color: var(--bg-secondary);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px var(--shadow-heavy);
+    color: var(--text-primary);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px var(--shadow-heavy);
     width: 100%;
     max-width: 600px;
-    margin: 0 auto;
-    font-family: 'Poppins', sans-serif;
-}
-
-h1,
-h2 {
-    color: var(--accent);
+    margin-bottom: 1.5rem;
     text-align: center;
-    font-weight: 500;
+    transition: transform 0.3s ease;
 }
 
-.round {
-    margin: 20px 0;
-    padding: 10px;
+.tournament-card:hover {
+    transform: translateY(-5px);
+    border: 2px solid var(--accent);
+}
+
+.tournament-card h2 {
+    color: var(--text-primary);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.tournament-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tournament-card li {
     background-color: var(--bg-tertiary);
-    border: 1px solid var(--border);
+    color: var(--text-primary);
+    padding: 0.75rem;
+    margin: 0.5rem 0;
     border-radius: 8px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.match {
+.player {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 8px 0;
+    gap: 1rem;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: var(--bg-tertiary);
     color: var(--text-primary);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.match button {
-    background-color: var(--accent);
-    color: var(--text-primary);
-    border: none;
-    border-radius: 4px;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+.player:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px var(--shadow-light);
 }
 
-.match button:hover {
-    background-color: var(--accent-dark);
+.rank-badge {
+    font-size: 1.5rem;
 }
 
-.match div {
-    margin-top: 5px;
-    font-size: 0.9em;
-    color: var(--text-secondary);
-    text-align: center;
+.player-name {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    color: inherit;
+}
+
+.player-rank-1 {
+    border-left: 4px solid gold;
+    background: linear-gradient(to right, #ffd700, var(--bg-tertiary));
+}
+
+.player-rank-2 {
+    border-left: 4px solid silver;
+    background: linear-gradient(to right, #c0c0c0, var(--bg-tertiary));
+}
+
+.player-rank-3 {
+    border-left: 4px solid #cd7f32;
+    background: linear-gradient(to right, #a56729, var(--bg-tertiary));
+}
+
+
+@media (max-width: 768px) {
+    .player {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .rank-badge {
+        font-size: 1.3rem;
+    }
+
+    .player-name {
+        font-size: 1rem;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .tournament-card {
+        padding: 1rem;
+        max-width: 90%;
+    }
+
+    .tournament-header {
+        font-size: 1.8rem;
+    }
+
+    .tournament-card h2 {
+        font-size: 1.5rem;
+    }
+
+    .tournament-card li {
+        font-size: 0.9rem;
+    }
 }
