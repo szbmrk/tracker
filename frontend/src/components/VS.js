@@ -13,7 +13,7 @@ const VS = () => {
         },
         {
             name: 'Harmadik R6 Cup',
-            winners: ['Aki ezt olvassa buzi', 'miért olvasod tovább?', 'najó puszi'],
+            winners: ['Jani', 'Szoboh', 'Jani'],
         },
     ];
 
