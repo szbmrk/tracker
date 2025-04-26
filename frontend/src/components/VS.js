@@ -5,11 +5,15 @@ const VS = () => {
     const tournaments = [
         {
             name: 'Első R6 Cup',
-            winners: ['wolfino0', 'Szoboh', 'Juan__Escobar'],
+            winners: ['wolfino0', 'Szoboh', 'Az egyik Jani (valszeg a spanyol)'],
         },
         {
             name: 'Második R6 Cup',
             winners: ['Kiliman-Jaro', 'wolfino0', 'f_rake92'],
+        },
+        {
+            name: 'Harmadik R6 Cup',
+            winners: ['Aki ezt olvassa buzi', 'miért olvasod tovább?', 'najó puszi'],
         },
     ];
 
